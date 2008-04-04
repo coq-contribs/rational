@@ -1,0 +1,44 @@
+-R . Rational
+-byte
+./Natural/NATURAL.v
+./Natural/nat.v
+./Rewrite/LeibnizRewrite/HS/hS.ml
+./Rewrite/LeibnizRewrite/HS/hS_tac.ml
+./Rewrite/LeibnizRewrite/AC/aC.ml
+./Rewrite/LeibnizRewrite/AC/aC_tac.ml
+./Rewrite/LeibnizRewrite/MLstuff/sort_tac.ml
+./Rewrite/LeibnizRewrite/MLstuff/struct.ml
+./Rewrite/GenericRewrite/genMLstuff/frame.ml
+./Rewrite/GenericRewrite/genMLstuff/basic.ml
+./Rewrite/GenericRewrite/HeadSimpl/main.ml
+./Rewrite/GenericRewrite/HeadSimpl/tacentry.ml
+./Rewrite/GenericRewrite/HeadSimpl/HeadSimpl.v
+./Rewrite/LeibnizRewrite/HS/HS.v
+./Rewrite/LeibnizRewrite/AC/AC.v
+./Subset/subset.v
+./Rational/minus.v
+./Rational/rational.v
+./Rational/PlusQ.v
+./Rational/rat.v
+./Rational/MultQ.v
+./Rational/rational_defs.v
+./Rational/Z_to_Q.v
+./Util/productSyntax.v
+./Quotient/quotient.v
+./Quotient/extensionality.v
+./Integer/int.v
+./Integer/intnumbers.v
+./Integer/leZproperties.v
+./Integer/integer.v
+./Integer/PlusZ.v
+./Integer/leZ.v
+./Integer/integer_defs.v
+./Integer/Absz.v
+./Integer/MultZ.v
+-I ./Rewrite/LeibnizRewrite/MLstuff
+-I ./Rewrite/GenericRewrite/genMLstuff
+-I ./Rewrite/LeibnizRewrite/AC
+-I ./Rewrite/LeibnizRewrite/HS
+-I ./Rewrite/GenericRewrite/HeadSimpl
+
+

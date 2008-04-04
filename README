@@ -1,0 +1,92 @@
+Contribution
+------------
+This directory contains: A definition of rational numbers
+
+Author & Date          : Samuel Boutin
+                         Inria Rocquencourt
+                         June 1995
+
+Type make to install
+--------------------
+
+To use this development define the following variables:
+setenv RATIONAL $COQTOP/contrib/Rocq/RATIONAL
+setenv REWRITE $RATIONAL/Rewrite/LeibnizRewrite
+
+If you want to develop with natural numbers, load the file ./Natural/path.v
+and tape
+Require nat.
+Require Nat_in_com.
+
+If you want to develop with integers, load the file ./Integer/path.v
+and type
+Require integers.
+Require Int_in_com.
+
+If you want to develop with rationals, load the file ./Rational/path.v
+and type
+Require rationals.
+Require Rat_in_com
+
+If you want to use the AC rewriting tactics, read the document in
+head of ./Rewrite
+
+Comments:
+---------
+ 
+    In this directory, we define rational numbers.
+ In this implementation we assume two sets of axioms allowing to define
+quotient types and subset types. These sets of axioms should be
+proved coherent by mixing up the deliverable model and the setoid model
+(both are presented in Martin Hofmann' thesis).
+  Integers are defined from natural numbers as the usual symetric
+completion of a semi-group.
+  Rationals are also defined in the very usal way as the product of 
+integers and strictly positive integers quotiented by 
+the relation you imagine!
+On of the main aim of the author, and a work on progress is to defined
+real numbers as cauchy sequences and prove it forms a Banach space.
+  
+REMARK :SOME DEVELOPMENTS ARE HIGHLY REUSABLE:
+------
+
+   -> FIRST : A LL1-grammar is written for arithmetic and can be reused
+for every development involving group, ring.. structures with usual
+precedence.
+
+   -> SECOND : Some basic rewriting tactics are used in this development:
+Their code and a brief introduction are available in the directory ./Rewrite
+They are very usefull in order to solve or simplify equations in a group
+a ring or a field. The present development often witnesses their
+usefulness.
+
+  Overview of the directories:
+  ----------------------------
+
+     ./Util contains some basic stuff for the syntax of product
+
+     ./Quotient contains a set of axioms allowing to define quotients
+as types
+
+     ./Subset contains a set of axiom allowing to define subsets as types
+
+     ./Natural is an overview of the results proved on natural numbers.
+Morover a suitable syntax for arithmetics is defined in the case of
+natural numbers. 
+An instanciation of generic rewriting tactics for AC laws is also
+defined. (see ./Rewrite)
+
+     ./Integer is the definition of integers from natural numbers
+Addition, multiplication minus are defined and their main properties
+(sym, assoc, distr..)
+The predicate less or equal is extended from natural numbers to
+integers.
+The Absolute value is also defined on integers
+
+     ./Rational is the definition of rational numbers
+Only the main operations (+,-,*) and their important properties (like
+for integers) are defined on rational numbers.
+
+     ./Rewrite is the local library of rewriting tactics
+It is itself devided into two subdirectories commented in a local draft
+ 
