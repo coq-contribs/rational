@@ -18,7 +18,7 @@
 
 (****** SYNTAXE POUR LA TACTIQUE AC_OF ***********)
 
-Declare ML Module "Struct".
-Declare ML Module "Sort_tac".
-Declare ML Module "HS".
-Declare ML Module "HS_tac".
+Declare ML Module "struct".
+Declare ML Module "sort_tac".
+Declare ML Module "hS".
+Declare ML Module "hS_tac".

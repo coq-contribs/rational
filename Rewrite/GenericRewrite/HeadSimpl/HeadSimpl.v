@@ -18,7 +18,7 @@
 
 (****** SYNTAXE POUR LA TACTIQUE AC_OF ***********)
 
-Declare ML Module "Frame".
-Declare ML Module "Basic".
-Declare ML Module "Main".
-Declare ML Module "Tacentry".
+Declare ML Module "frame".
+Declare ML Module "basic".
+Declare ML Module "main".
+Declare ML Module "tacentry".

@@ -20,7 +20,7 @@
 
 
 (*Require MLTop.*)
-Declare ML Module "Struct".
-Declare ML Module "Sort_tac".
-Declare ML Module "AC".
-Declare ML Module "AC_tac".
+Declare ML Module "struct".
+Declare ML Module "sort_tac".
+Declare ML Module "aC".
+Declare ML Module "aC_tac".
