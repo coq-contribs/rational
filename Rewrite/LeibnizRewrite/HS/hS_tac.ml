@@ -24,7 +24,7 @@ let execute id_op id_simpl gls =
       in 
       let gls_c = pf_concl(gls) 
       in
-        let (_,(typ,a,b)) = find_eq_data_decompose gls_c
+        let (_,(typ,a,b)) = find_eq_data_decompose gls gls_c
 	in
  let a_tree = (tree_of_constr op a)     
  and b_tree = (tree_of_constr op b) 
@@ -46,7 +46,7 @@ match a_tree with
 let hs_of id_op id_com id_perm identity id_simpl gls =
   let op    = constr_of_reference id_op in
   let gls_c = pf_concl(gls) in 
-    let (_,(typ,a,b)) = find_eq_data_decompose gls_c in
+    let (_,(typ,a,b)) = find_eq_data_decompose gls gls_c in
     let a_tree = (tree_of_constr op a)     
     and b_tree = (tree_of_constr op b) 
     in 

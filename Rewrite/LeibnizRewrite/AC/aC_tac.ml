@@ -7,7 +7,7 @@ open Hipattern
 open Sort_tac;;
 open AC;;
 
-(* Elle prends en argument l'op'erateur, les lemmes de
+(* Elle prend en argument l'op'erateur, les lemmes de
 commutativit'e, d'associativit'e, assoc_inv et permut et
 rend une tactique automatique *)
 
@@ -19,7 +19,7 @@ let ac_of id_op id_com id_perm identity gls=
   and com   = look id_com
   and perm  = look id_perm in
   let gls_c = pf_concl(gls) in 
-  let (_,(typ,a,b)) = find_eq_data_decompose gls_c in
+  let (_,(typ,a,b)) = find_this_eq_data_decompose gls gls_c in
     let a_tree = (tree_of_constr op a)     
     and b_tree = (tree_of_constr op b) in
     let tac_l = iDENTIFY (op,a_tree,b_tree) in
