@@ -2,7 +2,7 @@
 
 (*i camlp4deps: "parsing/grammar.cma" i*)
 
-open Util
+open Errors
 open Libnames
 open Proof_type
 open Tacmach

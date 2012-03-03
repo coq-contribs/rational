@@ -1,5 +1,5 @@
 
-open Util
+open Errors
 open Names
 open Term
 open Libnames
