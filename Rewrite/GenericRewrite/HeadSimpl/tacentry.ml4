@@ -1,6 +1,7 @@
 (* Contribution to the Coq Library, originally for V6.3 (July 1999) *)
 
 open Libnames
+open Globnames
 open Proof_type
 open Tacmach
 open Tactics;;
@@ -11,11 +12,11 @@ open Main;;
 
 exception BAD_ARG;;
 
-let execute id_typ id_op id_R id_simpl gls =  
+let execute id_typ id_op id_R id_simpl gls =
   let look = constr_of_reference in
   let op      = look id_op
   and simpl   = look id_simpl
-  and typ     = look id_typ in 
+  and typ     = look id_typ in
   let gls_c = pf_concl(gls) in
   if pf_is_matching gls (eq_pattern id_R) gls_c then
     let l = pf_matches gls (eq_pattern id_R) gls_c in
@@ -23,8 +24,8 @@ let execute id_typ id_op id_R id_simpl gls =
       match Sort.list (fun (a,_) (b,_) -> a <= b) l with
 	  [(_,typ);(_,a);(_,b)] -> (typ,a,b)
         | [(_,a);(_,b)]     -> (typ,a,b)
-        | _        -> raise BAD_ARG in 
-    let a_tree = (tree_of_constr op a)     
+        | _        -> raise BAD_ARG in
+    let a_tree = (tree_of_constr op a)
     and b_tree = (tree_of_constr op b) in
     match a_tree with
 	Node(op,Leaf a_0,rA) ->
@@ -47,17 +48,17 @@ let head_simpl id_typ id_op id_R id_eq id_com id_perm id_simpl id_neutral id_uni
   and n     = look id_neutral
   and unitl = look id_unitl
   and unitr = look id_unitr in
-  let gls_c = pf_concl(gls) in 
+  let gls_c = pf_concl(gls) in
   if pf_is_matching gls (eq_pattern id_R) gls_c then
     let l = pf_matches gls (eq_pattern id_R) gls_c in
     let (typ,a,b) =
       (match Sort.list (fun (a,_) (b,_) -> a <= b) l with
 	  [(_,typ);(_,a);(_,b)]->(typ,a,b)
-	| [(_,a);(_,b)] -> (typ,a,b)  
+	| [(_,a);(_,b)] -> (typ,a,b)
 	| _ -> raise BAD_ARG) in
-    let a_tree = (tree_of_constr op a)     
+    let a_tree = (tree_of_constr op a)
     and b_tree = (tree_of_constr op b) in
-    try 
+    try
       (let ltac_A,ltac_B = cOMMON_HEAD_SEARCH (op,a_tree,b_tree,n) in
        let one_step_coq =
          one_step_tac_of
@@ -66,7 +67,7 @@ let head_simpl id_typ id_op id_R id_eq id_com id_perm id_simpl id_neutral id_uni
        let action_B = tclTHENSEQ (List.map one_step_coq ltac_B) in
        tclTHENSEQ [action_A; action_B; execute id_typ id_op id_R id_simpl]
          gls)
-    with Do_nothing -> failwith 
+    with Do_nothing -> failwith
         "The tactic of Head Simplification cannot be applied here"
   else raise BAD_ARG
 ;;
@@ -74,8 +75,8 @@ let head_simpl id_typ id_op id_R id_eq id_com id_perm id_simpl id_neutral id_uni
 (****** SYNTAXE POUR LA TACTIQUE AC_OF ***********)
 
 TACTIC EXTEND HeadSimpl
-  [ "HeadSimpl" global(typ) global(eq) global(op) global(com) 
-       global(perm) global(rel) global(simpl) global(unit) 
+  [ "HeadSimpl" global(typ) global(eq) global(op) global(com)
+       global(perm) global(rel) global(simpl) global(unit)
        global(unitl) global(unitr)] ->
   [ head_simpl typ op rel eq com perm simpl unit unitl unitr ]
 END

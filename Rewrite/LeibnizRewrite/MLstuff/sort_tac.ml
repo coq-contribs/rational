@@ -5,6 +5,7 @@ open Reductionops
 open Term
 open Evd
 open Libnames
+open Globnames
 open Tacmach
 open Tacticals
 open Tactics

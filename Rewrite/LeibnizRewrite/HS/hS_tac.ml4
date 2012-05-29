@@ -4,6 +4,7 @@
 
 open Errors
 open Libnames
+open Globnames
 open Proof_type
 open Tacmach
 open Tactics
@@ -16,18 +17,18 @@ open HS
 
 exception BAD_ARG;;
 
-let execute id_op id_simpl gls =   
+let execute id_op id_simpl gls =
   let look = constr_of_reference
   in
     let op      = look id_op
     and simpl   = look id_simpl
-      in 
-      let gls_c = pf_concl(gls) 
+      in
+      let gls_c = pf_concl(gls)
       in
         let (_,(typ,a,b)) = find_eq_data_decompose gls gls_c
 	in
- let a_tree = (tree_of_constr op a)     
- and b_tree = (tree_of_constr op b) 
+ let a_tree = (tree_of_constr op a)
+ and b_tree = (tree_of_constr op b)
              in
 match a_tree with
    Node(op,Leaf a_0,rA) ->
@@ -45,18 +46,18 @@ match a_tree with
 
 let hs_of id_op id_com id_perm identity id_simpl gls =
   let op    = constr_of_reference id_op in
-  let gls_c = pf_concl(gls) in 
+  let gls_c = pf_concl(gls) in
     let (_,(typ,a,b)) = find_eq_data_decompose gls gls_c in
-    let a_tree = (tree_of_constr op a)     
-    and b_tree = (tree_of_constr op b) 
-    in 
-    try 
+    let a_tree = (tree_of_constr op a)
+    and b_tree = (tree_of_constr op b)
+    in
+    try
       let ltac_A,ltac_B = cOMMON_HEAD_SEARCH (op,a_tree,b_tree) in
       let one_step_coq = one_step_tac_of op typ id_perm id_com gls identity in
       let action_A = tclTHENSEQ (List.map one_step_coq ltac_A) in
       let action_B = tclTHENSEQ (List.map one_step_coq ltac_B) in
       tclTHENSEQ [action_A;action_B;execute id_op id_simpl] gls
-    with _ -> error 
+    with _ -> error
         "The tactic of Head Simplification cannot be applied here"
 ;;
 

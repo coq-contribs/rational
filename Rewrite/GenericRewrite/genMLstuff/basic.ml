@@ -3,6 +3,7 @@ open Errors
 open Names
 open Term
 open Libnames
+open Globnames
 open Reductionops
 open Tacticals
 open Tacmach

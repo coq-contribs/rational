@@ -1,17 +1,16 @@
 -R . Rational
--byte
 ./Natural/NATURAL.v
 ./Natural/nat.v
 ./Rewrite/LeibnizRewrite/HS/hS.ml
-./Rewrite/LeibnizRewrite/HS/hS_tac.ml
+./Rewrite/LeibnizRewrite/HS/hS_tac.ml4
 ./Rewrite/LeibnizRewrite/AC/aC.ml
-./Rewrite/LeibnizRewrite/AC/aC_tac.ml
+./Rewrite/LeibnizRewrite/AC/aC_tac.ml4
 ./Rewrite/LeibnizRewrite/MLstuff/sort_tac.ml
 ./Rewrite/LeibnizRewrite/MLstuff/struct.ml
 ./Rewrite/GenericRewrite/genMLstuff/frame.ml
 ./Rewrite/GenericRewrite/genMLstuff/basic.ml
 ./Rewrite/GenericRewrite/HeadSimpl/main.ml
-./Rewrite/GenericRewrite/HeadSimpl/tacentry.ml
+./Rewrite/GenericRewrite/HeadSimpl/tacentry.ml4
 ./Rewrite/GenericRewrite/HeadSimpl/HeadSimpl.v
 ./Rewrite/LeibnizRewrite/HS/HS.v
 ./Rewrite/LeibnizRewrite/AC/AC.v

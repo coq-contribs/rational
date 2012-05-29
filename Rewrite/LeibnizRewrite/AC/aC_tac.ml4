@@ -1,5 +1,6 @@
 
 open Libnames
+open Globnames
 open Proof_type
 open Tacmach
 open Tacticals
@@ -18,9 +19,9 @@ let ac_of id_op id_com id_perm identity gls=
   let op    = look id_op
   and com   = look id_com
   and perm  = look id_perm in
-  let gls_c = pf_concl(gls) in 
+  let gls_c = pf_concl(gls) in
   let (_,(typ,a,b)) = find_this_eq_data_decompose gls gls_c in
-    let a_tree = (tree_of_constr op a)     
+    let a_tree = (tree_of_constr op a)
     and b_tree = (tree_of_constr op b) in
     let tac_l = iDENTIFY (op,a_tree,b_tree) in
     let one_step_coq = one_step_tac_of op typ id_perm id_com gls identity in
@@ -29,6 +30,6 @@ let ac_of id_op id_com id_perm identity gls=
 ;;
 
 TACTIC EXTEND Ac_of
-  [ "ac_of" global(eq) global(op) global(com) global(perm) ] 
+  [ "ac_of" global(eq) global(op) global(com) global(perm) ]
   -> [ ac_of op com perm eq ]
 END
