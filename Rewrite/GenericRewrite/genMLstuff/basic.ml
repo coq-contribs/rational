@@ -28,7 +28,7 @@ let rec constr_of_tree op = function
   Leaf(x) -> x
 | Node(x,l,r)-> 
   mkApp (op,[|(constr_of_tree op l);(constr_of_tree op r)|])
-| Bottom -> anomaly "constr_of_tree"
+| Bottom -> anomaly (Pp.str "constr_of_tree")
 
 (* deuxi\`eme 'etape, traduire un (constr,constr) TACTIC en
 tactique Coq 
