@@ -21,7 +21,7 @@ let execute id_typ id_op id_R id_simpl gls =
   if pf_is_matching gls (eq_pattern id_R) gls_c then
     let l = pf_matches gls (eq_pattern id_R) gls_c in
     let (typ,a,b) =
-      match Sort.list (fun (a,_) (b,_) -> a <= b) l with
+      match Names.Id.Map.bindings l with
 	  [(_,typ);(_,a);(_,b)] -> (typ,a,b)
         | [(_,a);(_,b)]     -> (typ,a,b)
         | _        -> raise BAD_ARG in
@@ -52,7 +52,7 @@ let head_simpl id_typ id_op id_R id_eq id_com id_perm id_simpl id_neutral id_uni
   if pf_is_matching gls (eq_pattern id_R) gls_c then
     let l = pf_matches gls (eq_pattern id_R) gls_c in
     let (typ,a,b) =
-      (match Sort.list (fun (a,_) (b,_) -> a <= b) l with
+      (match Names.Id.Map.bindings l with
 	  [(_,typ);(_,a);(_,b)]->(typ,a,b)
 	| [(_,a);(_,b)] -> (typ,a,b)
 	| _ -> raise BAD_ARG) in
