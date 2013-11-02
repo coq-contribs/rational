@@ -31,5 +31,5 @@ let ac_of id_op id_com id_perm identity gls=
 
 TACTIC EXTEND Ac_of
   [ "ac_of" global(eq) global(op) global(com) global(perm) ]
-  -> [ ac_of op com perm eq ]
+  -> [ Proofview.V82.tactic (ac_of op com perm eq) ]
 END

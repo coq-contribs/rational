@@ -78,5 +78,5 @@ TACTIC EXTEND HeadSimpl
   [ "HeadSimpl" global(typ) global(eq) global(op) global(com)
        global(perm) global(rel) global(simpl) global(unit)
        global(unitl) global(unitr)] ->
-  [ head_simpl typ op rel eq com perm simpl unit unitl unitr ]
+  [ Proofview.V82.tactic (head_simpl typ op rel eq com perm simpl unit unitl unitr) ]
 END

@@ -67,5 +67,5 @@ open Genarg
 
 TACTIC EXTEND Hs_of
   [ "hs_of" global(eq) global(op) global(com) global(perm) global(simpl)]
-    -> [ hs_of op com perm eq simpl ]
+    -> [ Proofview.V82.tactic (hs_of op com perm eq simpl) ]
 END

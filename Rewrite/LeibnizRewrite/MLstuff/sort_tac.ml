@@ -63,7 +63,7 @@ function
    ((tclTHENS (cut t1)
        ([(tclTRY
 	    (tclTHEN 
-               (tclTHEN (introduction ac) (rewriteLR (mkVar ac)))
+               (tclTHEN (introduction ac) (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
                (clear [ac]))) ; 
 (* (TRY  ((cut  (whd_betadeltaiota (Project gls)
         (applist (const_value (Project gls) T_perm,
@@ -74,8 +74,8 @@ function
     Probl`eme de constante opaque avec T_perm !!! *)
 	 tclTRY
 	   (tclTHEN
-	      (simplest_elim t2)
-	      (default_auto)) ])) )
+	      (Proofview.V82.of_tactic (simplest_elim t2))
+	      (Proofview.V82.of_tactic default_auto)) ])) )
 
    | (COM(Leaf a1,Leaf a2),lleaf) ->
        let left = constr_of_tree op (Node(op,Leaf a1,Leaf a2))
@@ -95,9 +95,9 @@ function
 	   [ tclTRY (tclTHEN 
 		       (tclTHEN
 			  (introduction ac) 
-			  (rewriteLR (mkVar ac)))
+			  (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
 		       (clear [ac]));
 	     tclTRY (tclTHEN
-		       (simplest_elim t2)
-		       (default_auto)) ]
+		       (Proofview.V82.of_tactic (simplest_elim t2))
+		       (Proofview.V82.of_tactic default_auto)) ]
    | _ -> anomaly (Pp.str "Should not occur")

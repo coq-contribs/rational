@@ -65,12 +65,12 @@ function
 	   (tclTHEN
 	      (tclTHEN
 		 (introduction ac)
-		 (rewriteLR (mkVar ac)))
+		 (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
 	      (clear [ac]))) ; 
 	tclTRY
 	  (tclTHEN
-             (simplest_elim t2)
-	     default_auto)]))
+             (Proofview.V82.of_tactic (simplest_elim t2))
+	     (Proofview.V82.of_tactic default_auto))]))
 
   | (COM(Leaf a1,Leaf a2),lleaf) ->
 
@@ -93,12 +93,12 @@ function
 	     (tclTHEN
 		(tclTHEN
 		   (introduction ac) 
-		   (rewriteLR (mkVar ac)))
+		   (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
 		(clear [ac]));
 	   tclTRY  
 	     (tclTHEN
-		(simplest_elim t2)
-		default_auto)]))
+		(Proofview.V82.of_tactic (simplest_elim t2))
+		(Proofview.V82.of_tactic default_auto))]))
 
    | (EXPAND(Leaf a,t),[]) ->     (apply unitl)
 
