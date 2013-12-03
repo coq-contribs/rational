@@ -60,7 +60,7 @@ function
 		    (applist (constr_of_reference t_perm,
 		       [a1;a2;(constr_of_tree op rr)]))
  in
-   ((tclTHENS (cut t1)
+   ((tclTHENS (Proofview.V82.of_tactic (cut t1))
        ([(tclTRY
 	    (tclTHEN 
                (tclTHEN (introduction ac) (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
@@ -91,7 +91,7 @@ function
        let t2 = whd_betadeltaiota (pf_env gls) (project gls)
 			     (applist (constr_of_reference t_com,[a1;a2])) in
 	 tclTHENS
-           (cut t1)
+           (Proofview.V82.of_tactic (cut t1))
 	   [ tclTRY (tclTHEN 
 		       (tclTHEN
 			  (introduction ac) 
