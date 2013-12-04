@@ -60,7 +60,7 @@ function
 	       (applist (t_perm, [a1;a2;(constr_of_tree op rr)]))
  in
    (tclTHENS
-      (cut t1) 
+      (Proofview.V82.of_tactic (cut t1))
       ([(tclTRY
 	   (tclTHEN
 	      (tclTHEN
@@ -88,7 +88,7 @@ function
 	whd_betadeltaiota (pf_env gls) (project gls) (applist (t_com,[a1;a2] ))
       in
       (tclTHENS
-         (cut t1)
+         (Proofview.V82.of_tactic (cut t1))
 	 ([tclTRY
 	     (tclTHEN
 		(tclTHEN
