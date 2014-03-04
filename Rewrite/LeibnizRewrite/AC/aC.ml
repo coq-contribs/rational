@@ -45,9 +45,9 @@ let iDENTIFY =
 let rec find_b1_in_t1 b1 = 
   let rec fix ll = function
       Node(x,Leaf(a1),r1) -> 
-            if a1 = b1 then ll,r1
+            if Constr.equal a1 b1 then ll,r1
                        else fix (a1::ll) r1
-    | Leaf(a_end) -> if a_end = b1 then ll,Bottom
+    | Leaf(a_end) -> if Constr.equal a_end b1 then ll,Bottom
                                    else raise Not_equal
     | _   -> raise Not_normalized
   in fix []
@@ -56,7 +56,7 @@ in
 let aux x b term l_ai =
    let rec fix term tac_list = function
       []      -> Node(x,Leaf(b),term),List.rev(tac_list)
-    | a::rest -> if term = Bottom then
+    | a::rest -> if term == Bottom then
  fix (Leaf a) ((COM(Leaf a,Leaf b),List.rev rest)::tac_list) rest
                                  else
    fix (Node(x,Leaf(a),term)) 
@@ -67,12 +67,12 @@ in
 let rec identify = function x,t1,t2 ->
  match t1,t2 with
    Node(x,(Leaf a1),r1),Node(y,(Leaf b1),r2) as t ->
-    if a1 = b1 then List.map (fun (tac,ll)->(tac,a1::ll)) (identify (x,r1,r2)) else
+    if Constr.equal a1 b1 then List.map (fun (tac,ll)->(tac,a1::ll)) (identify (x,r1,r2)) else
       let l_ai,term = find_b1_in_t1 b1 (fst t)
       in
        let (new_t1,tac_list) = aux x b1 term l_ai 
        in tac_list @ identify (x,new_t1,snd t)
- | Leaf(a1),Leaf(b1) -> if a1=b1 then [] else raise Not_equal
+ | Leaf(a1),Leaf(b1) -> if Constr.equal a1 b1 then [] else raise Not_equal
  | _ -> raise Not_normalized
  
 in identify

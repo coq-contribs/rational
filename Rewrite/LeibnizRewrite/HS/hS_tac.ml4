@@ -57,7 +57,7 @@ let hs_of id_op id_com id_perm identity id_simpl gls =
       let action_A = tclTHENSEQ (List.map one_step_coq ltac_A) in
       let action_B = tclTHENSEQ (List.map one_step_coq ltac_B) in
       tclTHENSEQ [action_A;action_B;execute id_op id_simpl] gls
-    with _ -> error
+    with e when Errors.noncritical e -> error
         "The tactic of Head Simplification cannot be applied here"
 ;;
 

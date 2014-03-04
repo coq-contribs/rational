@@ -19,7 +19,7 @@ open Struct
 (constr,constr) tree et reciproquement *)
 
 let rec tree_of_constr op c = match kind_of_term c with
-  | App (op1,[|left;right|]) when op = op1 -> 
+  | App (op1,[|left;right|]) when Constr.equal op op1 -> 
       Node(op,(tree_of_constr op left),(tree_of_constr op right))
   | _ -> Leaf c
 

@@ -33,9 +33,9 @@ let cOMMON_HEAD_SEARCH =
 let rec find_b1_in_t1 b1 = 
   let rec fix ll = function
       Node(x,Leaf(a1),r1) -> 
-            if a1 = b1 then ll,r1
+            if Constr.equal a1 b1 then ll,r1
                        else fix (a1::ll) r1
-    | Leaf(a_end) -> if a_end = b1 then ll,Bottom
+    | Leaf(a_end) -> if Constr.equal a_end b1 then ll,Bottom
                                    else raise Not_equal
     | _   -> raise Not_normalized
   in fix []
@@ -51,7 +51,7 @@ in
 let aux x b term l_ai =
    let rec fix term tac_list = function
       []      -> Node(x,Leaf(b),term),List.rev(tac_list)
-    | a::rest -> if term = Bottom then
+    | a::rest -> if term == Bottom then
  fix (Leaf a) ((COM(Leaf a,Leaf b),List.rev rest)::tac_list) rest
                                  else
    fix (Node(x,Leaf(a),term)) 
@@ -73,7 +73,7 @@ let rec search_head op t1 t2 = function
          let ltac2 = snd(aux op b1 term2 ll2) in
           (ltac1,ltac2))
    with
-         _ -> search_head op t1 t2 r2)
+         e when Errors.noncritical e -> search_head op t1 t2 r2)
   
        | Leaf(b1) ->
 
@@ -84,7 +84,7 @@ let rec search_head op t1 t2 = function
          let ltac2 = snd(aux op b1 term2 ll2) in
           (ltac1,ltac2))
    with
-         _ -> raise No_common_head)
+         e when Errors.noncritical e -> raise No_common_head)
 
 
        | _ -> raise Not_normalized
