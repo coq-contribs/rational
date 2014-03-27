@@ -53,7 +53,7 @@ let hs_of id_op id_com id_perm identity id_simpl =
       let action_B = Tacticals.New.tclTHENLIST (List.map one_step_coq ltac_B) in
       Tacticals.New.tclTHENLIST [action_A;action_B;execute id_op id_simpl]
     with e when Errors.noncritical e ->
-      Tactics.New.tclZEROMSG (Pp.str "The tactic of Head Simplification cannot be applied here")
+      Tacticals.New.tclZEROMSG (Pp.str "The tactic of Head Simplification cannot be applied here")
   end
 
 (****** SYNTAXE POUR LA TACTIQUE AC_OF ***********)
