@@ -19,11 +19,11 @@ exception BAD_ARG;;
 
 let execute id_op id_simpl =
   Proofview.Goal.enter begin fun gl ->
-    let look = constr_of_reference in
+    let look = Universes.constr_of_reference in
     let op      = look id_op in
     let simpl   = look id_simpl in
     let gls_c = Proofview.Goal.concl gl in
-    let (_,(typ,a,b)) = find_eq_data_decompose gl gls_c in
+    let (_, _,(typ,a,b)) = find_eq_data_decompose gl gls_c in
     let a_tree = (tree_of_constr op a) in
     let b_tree = (tree_of_constr op b) in
     let (op, a_0, rA) = match a_tree with
@@ -41,9 +41,9 @@ let execute id_op id_simpl =
 
 let hs_of id_op id_com id_perm identity id_simpl =
   Proofview.Goal.enter begin fun gl ->
-  let op    = constr_of_reference id_op in
+  let op    = Universes.constr_of_reference id_op in
   let gls_c = Proofview.Goal.concl gl in
-    let (_,(typ,a,b)) = find_eq_data_decompose gl gls_c in
+    let (_, _, (typ,a,b)) = find_eq_data_decompose gl gls_c in
     let a_tree = (tree_of_constr op a) in
     let b_tree = (tree_of_constr op b) in
     try

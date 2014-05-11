@@ -16,12 +16,12 @@ exception BAD_ARG;;
 
 let ac_of id_op id_com id_perm identity=
   Proofview.Goal.enter begin fun gl ->
-  let look = constr_of_reference in
+  let look = Universes.constr_of_reference in
   let op    = look id_op
   and com   = look id_com
   and perm  = look id_perm in
   let gls_c = Proofview.Goal.concl gl in
-  let (_,(typ,a,b)) = find_this_eq_data_decompose gl gls_c in
+  let (_, _, (typ,a,b)) = find_this_eq_data_decompose gl gls_c in
     let a_tree = (tree_of_constr op a)
     and b_tree = (tree_of_constr op b) in
     let tac_l = iDENTIFY (op,a_tree,b_tree) in

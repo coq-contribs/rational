@@ -13,7 +13,7 @@ open Main;;
 exception BAD_ARG;;
 
 let execute id_typ id_op id_R id_simpl gls =
-  let look = constr_of_reference in
+  let look = Universes.constr_of_reference in
   let op      = look id_op
   and simpl   = look id_simpl
   and typ     = look id_typ in
@@ -41,7 +41,7 @@ let execute id_typ id_op id_R id_simpl gls =
 ;;
 
 let head_simpl id_typ id_op id_R id_eq id_com id_perm id_simpl id_neutral id_unitl id_unitr gls=
-  let look = constr_of_reference in
+  let look = Universes.constr_of_reference in
   let op    = look id_op
   and typ   = look id_typ
   and eq    = look id_eq

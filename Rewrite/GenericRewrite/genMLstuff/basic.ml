@@ -53,7 +53,7 @@ function
    let new_A = constr_of_tree op
         (cons_tree op (Node(op,Leaf a2,Node(op,Leaf a1,rr))) (List.rev lleaf))
   in
-   let t_perm = constr_of_reference id_perm in
+   let t_perm = Universes.constr_of_reference id_perm in
    let t1 = whd_betadeltaiota (pf_env gls) (project gls)
 	      (mkApp (identity, [|typ;old_A;new_A|]))
    and t2 = whd_betadeltaiota (pf_env gls) (project gls)
@@ -81,7 +81,7 @@ function
     let new_A = constr_of_tree op
         (cons_tree op (Node(op,Leaf a2,Leaf a1)) (List.rev lleaf))
      in
-      let t_com = constr_of_reference id_com in
+      let t_com = Universes.constr_of_reference id_com in
       let t1 = whd_betadeltaiota (pf_env gls) (project gls)
 		  (mkApp (identity, [|typ;old_A;new_A|]))
       and t2 =
@@ -111,7 +111,7 @@ function
 
 let eq_pattern eq =
   let ty = Retyping.get_type_of (Global.env()) Evd.empty
-    (constr_of_reference eq) in
+    (Universes.constr_of_reference eq) in
   let nargs = List.length (fst (splay_prod (Global.env()) Evd.empty ty)) in
   if nargs <> 2 & nargs <> 3 then
     error "Can only deal with an equality of the form (eqname a b) or (eqname A a b)";
