@@ -8,6 +8,8 @@ open Hipattern
 open Sort_tac;;
 open AC;;
 
+DECLARE PLUGIN "aC_tac"
+
 (* Elle prend en argument l'op'erateur, les lemmes de
 commutativit'e, d'associativit'e, assoc_inv et permut et
 rend une tactique automatique *)

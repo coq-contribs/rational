@@ -10,6 +10,8 @@ open Frame;;
 open Basic;;
 open Main;;
 
+DECLARE PLUGIN "tacentry"
+
 exception BAD_ARG;;
 
 let execute id_typ id_op id_R id_simpl gls =

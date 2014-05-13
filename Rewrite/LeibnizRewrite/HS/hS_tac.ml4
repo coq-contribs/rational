@@ -15,6 +15,8 @@ open Sort_tac
 open Struct
 open HS
 
+DECLARE PLUGIN "hS_tac"
+
 exception BAD_ARG;;
 
 let execute id_op id_simpl =
