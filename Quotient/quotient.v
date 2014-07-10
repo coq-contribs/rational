@@ -149,4 +149,4 @@ can be derived from the previous set of axioms and the axiom xi *)
 (* Syntax for quotients *)
  
 Notation "| c |" := (In _ _ c) (at level 20, c at level 0).
-Notation "c / c2" := (MK_QUO c c2).
+Notation "c / c2" := (MK_QUO c c2) : type_scope.

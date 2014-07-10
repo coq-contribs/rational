@@ -72,7 +72,7 @@ Definition Z_rel (x y : nat * nat) := x .1 + y .2 = y .1 + x .2.
 
 Hint Unfold Z_rel.
 
-Definition Z := Z_typ / Z_rel.
+Definition Z := (Z_typ / Z_rel)%type.
 
 Notation "| c | 'z'" := (In Z_typ Z_rel c) (at level 20, c at level 0).
 
