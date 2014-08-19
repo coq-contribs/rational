@@ -35,7 +35,7 @@ let execute id_typ id_op id_R id_simpl gls =
 	      Node(op,Leaf b_0,rB) ->
 		let new_A = constr_of_tree op rA
 		and new_B = constr_of_tree op rB in
-		(apply simpl)
+		Proofview.V82.of_tactic (apply simpl)
 		(*(apply_term simpl [] ([a;new_A;new_B])*) gls
 	    | _ -> raise BAD_ARG)
       | _ -> raise BAD_ARG

@@ -38,7 +38,7 @@ let execute id_op id_simpl =
     in
     let _ = constr_of_tree op rA in
     let _ = constr_of_tree op rB in
-    Proofview.V82.tactic (apply simpl)
+    apply simpl
   end
 
 let hs_of id_op id_com id_perm identity id_simpl =

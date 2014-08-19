@@ -100,11 +100,11 @@ function
 		(Proofview.V82.of_tactic (simplest_elim t2))
 		(Proofview.V82.of_tactic default_auto))]))
 
-   | (EXPAND(Leaf a,t),[]) ->     (apply unitl)
+   | (EXPAND(Leaf a,t),[]) ->     Proofview.V82.of_tactic (apply unitl)
 
  (* was (resolve (const_of_id unitl)) *)
 
-   | (EXPAND(t,Leaf a),[]) ->  (apply unitr)
+   | (EXPAND(t,Leaf a),[]) ->  Proofview.V82.of_tactic (apply unitr)
  (* was  (resolve (const_of_id unitr)) *)
 
    | _ -> assert false (*Cette clause était absente dans la version initiale*)
