@@ -17,7 +17,7 @@ rend une tactique automatique *)
 exception BAD_ARG;;
 
 let ac_of id_op id_com id_perm identity=
-  Proofview.Goal.enter begin fun gl ->
+  Proofview.Goal.nf_enter begin fun gl ->
   let look = Universes.constr_of_reference in
   let op    = look id_op
   and com   = look id_com

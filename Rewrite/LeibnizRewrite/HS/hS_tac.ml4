@@ -20,7 +20,7 @@ DECLARE PLUGIN "hS_tac"
 exception BAD_ARG;;
 
 let execute id_op id_simpl =
-  Proofview.Goal.enter begin fun gl ->
+  Proofview.Goal.nf_enter begin fun gl ->
     let look = Universes.constr_of_reference in
     let op      = look id_op in
     let simpl   = look id_simpl in
@@ -42,7 +42,7 @@ let execute id_op id_simpl =
   end
 
 let hs_of id_op id_com id_perm identity id_simpl =
-  Proofview.Goal.enter begin fun gl ->
+  Proofview.Goal.nf_enter begin fun gl ->
   let op    = Universes.constr_of_reference id_op in
   let gls_c = Proofview.Goal.concl gl in
     let (_, _, (typ,a,b)) = find_eq_data_decompose gl gls_c in
