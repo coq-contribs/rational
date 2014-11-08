@@ -59,18 +59,18 @@ function
    and t2 = whd_betadeltaiota (pf_env gls) (project gls)
 	       (applist (t_perm, [a1;a2;(constr_of_tree op rr)]))
  in
-   (tclTHENS
-      (Proofview.V82.of_tactic (cut t1))
-      ([(tclTRY
-	   (tclTHEN
-	      (tclTHEN
+   Proofview.V82.of_tactic (Tacticals.New.tclTHENS
+      (cut t1)
+      [Tacticals.New.tclTRY
+	   (Tacticals.New.tclTHEN
+	      (Tacticals.New.tclTHEN
 		 (introduction ac)
-		 (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
-	      (clear [ac]))) ; 
-	tclTRY
-	  (tclTHEN
-             (Proofview.V82.of_tactic (simplest_elim t2))
-	     (Proofview.V82.of_tactic default_auto))]))
+		 (rewriteLR (mkVar ac)))
+	      (Proofview.V82.tactic (clear [ac]))) ;
+	Tacticals.New.tclTRY
+	  (Tacticals.New.tclTHEN
+             (simplest_elim t2)
+	     default_auto)])
 
   | (COM(Leaf a1,Leaf a2),lleaf) ->
 
@@ -87,18 +87,18 @@ function
       and t2 =
 	whd_betadeltaiota (pf_env gls) (project gls) (applist (t_com,[a1;a2] ))
       in
-      (tclTHENS
-         (Proofview.V82.of_tactic (cut t1))
-	 ([tclTRY
-	     (tclTHEN
-		(tclTHEN
+      Proofview.V82.of_tactic (Tacticals.New.tclTHENS
+         (cut t1)
+	 [Tacticals.New.tclTRY
+	     (Tacticals.New.tclTHEN
+		(Tacticals.New.tclTHEN
 		   (introduction ac) 
-		   (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
-		(clear [ac]));
-	   tclTRY  
-	     (tclTHEN
-		(Proofview.V82.of_tactic (simplest_elim t2))
-		(Proofview.V82.of_tactic default_auto))]))
+		   (rewriteLR (mkVar ac)))
+		(Proofview.V82.tactic (clear [ac])));
+	   Tacticals.New.tclTRY
+	     (Tacticals.New.tclTHEN
+		(simplest_elim t2)
+		default_auto)])
 
    | (EXPAND(Leaf a,t),[]) ->     Proofview.V82.of_tactic (apply unitl)
 

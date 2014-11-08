@@ -60,22 +60,22 @@ function
 		    (applist (Universes.constr_of_reference t_perm,
 		       [a1;a2;(constr_of_tree op rr)]))
  in
-   ((tclTHENS (Proofview.V82.of_tactic (cut t1))
-       ([(tclTRY
-	    (tclTHEN 
-               (tclTHEN (introduction ac) (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
-               (clear [ac]))) ; 
+   Proofview.V82.of_tactic (Tacticals.New.tclTHENS (cut t1)
+       [Tacticals.New.tclTRY
+	    (Tacticals.New.tclTHEN
+               (Tacticals.New.tclTHEN (introduction ac) (rewriteLR (mkVar ac)))
+               (Proofview.V82.tactic (clear [ac]))) ; 
 (* (TRY  ((cut  (whd_betadeltaiota (Project gls)
         (applist (const_value (Project gls) T_perm,
              [a1;a2;(constr_of_tree op rr)]))))
           THENS 
        [red THEN  (auto NONE);
-        (elim (nvar (string_of_id t_perm))) THEN (auto NONE)]))])
+        (elim (nvar (string_of_id t_perm))) THEN (auto NONE)]))
     Probl`eme de constante opaque avec T_perm !!! *)
-	 tclTRY
-	   (tclTHEN
-	      (Proofview.V82.of_tactic (simplest_elim t2))
-	      (Proofview.V82.of_tactic default_auto)) ])) )
+	 Tacticals.New.tclTRY
+	   (Tacticals.New.tclTHEN
+	      (simplest_elim t2)
+	      default_auto) ])
 
    | (COM(Leaf a1,Leaf a2),lleaf) ->
        let left = constr_of_tree op (Node(op,Leaf a1,Leaf a2))
@@ -90,14 +90,14 @@ function
 		  (mkApp (Universes.constr_of_reference identity,[|typ;old_A;new_A|])) in
        let t2 = whd_betadeltaiota (pf_env gls) (project gls)
 			     (applist (Universes.constr_of_reference t_com,[a1;a2])) in
-	 tclTHENS
-           (Proofview.V82.of_tactic (cut t1))
-	   [ tclTRY (tclTHEN 
-		       (tclTHEN
+	 Proofview.V82.of_tactic (Tacticals.New.tclTHENS
+           (cut t1)
+	   [ Tacticals.New.tclTRY (Tacticals.New.tclTHEN 
+		       (Tacticals.New.tclTHEN
 			  (introduction ac) 
-			  (Proofview.V82.of_tactic (rewriteLR (mkVar ac))))
-		       (clear [ac]));
-	     tclTRY (tclTHEN
-		       (Proofview.V82.of_tactic (simplest_elim t2))
-		       (Proofview.V82.of_tactic default_auto)) ]
+			  (rewriteLR (mkVar ac)))
+		       (Proofview.V82.tactic (clear [ac])));
+	     Tacticals.New.tclTRY (Tacticals.New.tclTHEN
+		       (simplest_elim t2)
+		       default_auto) ])
    | _ -> anomaly (Pp.str "Should not occur")
