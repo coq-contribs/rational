@@ -14,13 +14,14 @@ open Hipattern
 open Sort_tac
 open Struct
 open HS
+open Proofview.Notations
 
 DECLARE PLUGIN "hS_tac"
 
 exception BAD_ARG;;
 
 let execute id_op id_simpl =
-  Proofview.Goal.nf_enter begin fun gl ->
+  Proofview.Goal.nf_enter { enter = begin fun gl ->
     let look = Universes.constr_of_reference in
     let op      = look id_op in
     let simpl   = look id_simpl in
@@ -39,7 +40,7 @@ let execute id_op id_simpl =
     let _ = constr_of_tree op rA in
     let _ = constr_of_tree op rB in
     apply simpl
-  end
+  end }
 
 let hs_of id_op id_com id_perm identity id_simpl =
   Proofview.Goal.nf_enter begin fun gl ->

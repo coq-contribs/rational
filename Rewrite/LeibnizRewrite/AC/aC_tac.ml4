@@ -7,6 +7,7 @@ open Tacticals
 open Hipattern
 open Sort_tac;;
 open AC;;
+open Proofview.Notations
 
 DECLARE PLUGIN "aC_tac"
 
@@ -17,7 +18,7 @@ rend une tactique automatique *)
 exception BAD_ARG;;
 
 let ac_of id_op id_com id_perm identity=
-  Proofview.Goal.nf_enter begin fun gl ->
+  Proofview.Goal.nf_enter { enter = begin fun gl ->
   let look = Universes.constr_of_reference in
   let op    = look id_op
   and com   = look id_com
@@ -29,7 +30,7 @@ let ac_of id_op id_com id_perm identity=
     let tac_l = iDENTIFY (op,a_tree,b_tree) in
     let one_step_coq = Tacmach.New.of_old (fun gl -> one_step_tac_of op typ id_perm id_com gl identity) gl in
     Proofview.V82.tactic (fun gl -> tclTHENSEQ (List.map one_step_coq tac_l) gl)
-  end
+  end }
 
 TACTIC EXTEND Ac_of
   [ "ac_of" global(eq) global(op) global(com) global(perm) ]
