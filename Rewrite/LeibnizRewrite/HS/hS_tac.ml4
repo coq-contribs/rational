@@ -43,7 +43,7 @@ let execute id_op id_simpl =
   end }
 
 let hs_of id_op id_com id_perm identity id_simpl =
-  Proofview.Goal.nf_enter begin fun gl ->
+  Proofview.Goal.nf_enter { enter = begin fun gl ->
   let op    = Universes.constr_of_reference id_op in
   let gls_c = Proofview.Goal.concl gl in
     let (_, _, (typ,a,b)) = find_eq_data_decompose gl gls_c in
@@ -57,7 +57,7 @@ let hs_of id_op id_com id_perm identity id_simpl =
       Tacticals.New.tclTHENLIST [action_A;action_B;execute id_op id_simpl]
     with e when Errors.noncritical e ->
       Tacticals.New.tclZEROMSG (Pp.str "The tactic of Head Simplification cannot be applied here")
-  end
+  end }
 
 (****** SYNTAXE POUR LA TACTIQUE AC_OF ***********)
 
