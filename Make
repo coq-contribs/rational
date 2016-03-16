@@ -1,6 +1,10 @@
 -R . Rational
-./Natural/NATURAL.v
-./Natural/nat.v
+-I ./Rewrite/LeibnizRewrite/MLstuff
+-I ./Rewrite/GenericRewrite/genMLstuff
+-I ./Rewrite/LeibnizRewrite/AC
+-I ./Rewrite/LeibnizRewrite/HS
+-I ./Rewrite/GenericRewrite/HeadSimpl
+
 ./Rewrite/LeibnizRewrite/HS/hS.ml
 ./Rewrite/LeibnizRewrite/HS/hS_tac.ml4
 ./Rewrite/LeibnizRewrite/AC/aC.ml
@@ -11,6 +15,9 @@
 ./Rewrite/GenericRewrite/genMLstuff/basic.ml
 ./Rewrite/GenericRewrite/HeadSimpl/main.ml
 ./Rewrite/GenericRewrite/HeadSimpl/tacentry.ml4
+
+./Natural/NATURAL.v
+./Natural/nat.v
 ./Rewrite/GenericRewrite/HeadSimpl/HeadSimpl.v
 ./Rewrite/LeibnizRewrite/HS/HS.v
 ./Rewrite/LeibnizRewrite/AC/AC.v
@@ -34,10 +41,3 @@
 ./Integer/integer_defs.v
 ./Integer/Absz.v
 ./Integer/MultZ.v
--I ./Rewrite/LeibnizRewrite/MLstuff
--I ./Rewrite/GenericRewrite/genMLstuff
--I ./Rewrite/LeibnizRewrite/AC
--I ./Rewrite/LeibnizRewrite/HS
--I ./Rewrite/GenericRewrite/HeadSimpl
-
-
