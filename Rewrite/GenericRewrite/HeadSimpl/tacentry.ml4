@@ -9,6 +9,7 @@ open Tacticals;;
 open Frame;;
 open Basic;;
 open Main;;
+open Constrarg
 
 DECLARE PLUGIN "tacentry"
 
