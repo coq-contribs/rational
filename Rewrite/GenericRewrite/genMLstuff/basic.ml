@@ -66,7 +66,7 @@ function
 	      (Tacticals.New.tclTHEN
 		 (introduction ac)
 		 (rewriteLR (mkVar ac)))
-	      (Proofview.V82.tactic (clear [ac]))) ;
+	      (clear [ac])) ;
 	Tacticals.New.tclTRY
 	  (Tacticals.New.tclTHEN
              (simplest_elim t2)
@@ -94,7 +94,7 @@ function
 		(Tacticals.New.tclTHEN
 		   (introduction ac) 
 		   (rewriteLR (mkVar ac)))
-		(Proofview.V82.tactic (clear [ac])));
+		(clear [ac]));
 	   Tacticals.New.tclTRY
 	     (Tacticals.New.tclTHEN
 		(simplest_elim t2)

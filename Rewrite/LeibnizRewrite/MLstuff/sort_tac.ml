@@ -64,7 +64,7 @@ function
        [Tacticals.New.tclTRY
 	    (Tacticals.New.tclTHEN
                (Tacticals.New.tclTHEN (introduction ac) (rewriteLR (mkVar ac)))
-               (Proofview.V82.tactic (clear [ac]))) ; 
+               (clear [ac])) ; 
 (* (TRY  ((cut  (whd_betadeltaiota (Project gls)
         (applist (const_value (Project gls) T_perm,
              [a1;a2;(constr_of_tree op rr)]))))
@@ -96,7 +96,7 @@ function
 		       (Tacticals.New.tclTHEN
 			  (introduction ac) 
 			  (rewriteLR (mkVar ac)))
-		       (Proofview.V82.tactic (clear [ac])));
+		       (clear [ac]));
 	     Tacticals.New.tclTRY (Tacticals.New.tclTHEN
 		       (simplest_elim t2)
 		       default_auto) ])
