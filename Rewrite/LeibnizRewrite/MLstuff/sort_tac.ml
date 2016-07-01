@@ -53,10 +53,10 @@ function
    let new_A = constr_of_tree op
         (cons_tree op (Node(op,Leaf a2,Node(op,Leaf a1,rr))) (List.rev lleaf))
   in 
-   let t1 = whd_betadeltaiota (pf_env gls) (project gls)
+   let t1 = whd_all (pf_env gls) (project gls)
 	       (mkApp (Universes.constr_of_reference identity, [|typ;old_A;new_A|]))
   in 
-   let t2 = whd_betadeltaiota (pf_env gls) (project gls) 
+   let t2 = whd_all (pf_env gls) (project gls) 
 		    (applist (Universes.constr_of_reference t_perm,
 		       [a1;a2;(constr_of_tree op rr)]))
  in
@@ -65,7 +65,7 @@ function
 	    (Tacticals.New.tclTHEN
                (Tacticals.New.tclTHEN (introduction ac) (rewriteLR (mkVar ac)))
                (clear [ac])) ; 
-(* (TRY  ((cut  (whd_betadeltaiota (Project gls)
+(* (TRY  ((cut  (whd_all (Project gls)
         (applist (const_value (Project gls) T_perm,
              [a1;a2;(constr_of_tree op rr)]))))
           THENS 
@@ -86,9 +86,9 @@ function
        let new_A = constr_of_tree op
 		     (cons_tree op (Node(op,Leaf a2,Leaf a1)) 
 			(List.rev lleaf)) in
-       let t1 = whd_betadeltaiota (pf_env gls) (project gls)
+       let t1 = whd_all (pf_env gls) (project gls)
 		  (mkApp (Universes.constr_of_reference identity,[|typ;old_A;new_A|])) in
-       let t2 = whd_betadeltaiota (pf_env gls) (project gls)
+       let t2 = whd_all (pf_env gls) (project gls)
 			     (applist (Universes.constr_of_reference t_com,[a1;a2])) in
 	 Proofview.V82.of_tactic (Tacticals.New.tclTHENS
            (cut t1)

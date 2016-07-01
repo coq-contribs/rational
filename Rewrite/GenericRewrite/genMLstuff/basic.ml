@@ -54,9 +54,9 @@ function
         (cons_tree op (Node(op,Leaf a2,Node(op,Leaf a1,rr))) (List.rev lleaf))
   in
    let t_perm = Universes.constr_of_reference id_perm in
-   let t1 = whd_betadeltaiota (pf_env gls) (project gls)
+   let t1 = whd_all (pf_env gls) (project gls)
 	      (mkApp (identity, [|typ;old_A;new_A|]))
-   and t2 = whd_betadeltaiota (pf_env gls) (project gls)
+   and t2 = whd_all (pf_env gls) (project gls)
 	       (applist (t_perm, [a1;a2;(constr_of_tree op rr)]))
  in
    Proofview.V82.of_tactic (Tacticals.New.tclTHENS
@@ -82,10 +82,10 @@ function
         (cons_tree op (Node(op,Leaf a2,Leaf a1)) (List.rev lleaf))
      in
       let t_com = Universes.constr_of_reference id_com in
-      let t1 = whd_betadeltaiota (pf_env gls) (project gls)
+      let t1 = whd_all (pf_env gls) (project gls)
 		  (mkApp (identity, [|typ;old_A;new_A|]))
       and t2 =
-	whd_betadeltaiota (pf_env gls) (project gls) (applist (t_com,[a1;a2] ))
+	whd_all (pf_env gls) (project gls) (applist (t_com,[a1;a2] ))
       in
       Proofview.V82.of_tactic (Tacticals.New.tclTHENS
          (cut t1)
