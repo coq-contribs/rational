@@ -2,7 +2,7 @@
 
 (*i camlp4deps: "parsing/grammar.cma" i*)
 
-open Errors
+open CErrors
 open Libnames
 open Globnames
 open Proof_type
@@ -56,7 +56,7 @@ let hs_of id_op id_com id_perm identity id_simpl =
       let action_A = Tacticals.New.tclTHENLIST (List.map one_step_coq ltac_A) in
       let action_B = Tacticals.New.tclTHENLIST (List.map one_step_coq ltac_B) in
       Tacticals.New.tclTHENLIST [action_A;action_B;execute id_op id_simpl]
-    with e when Errors.noncritical e ->
+    with e when CErrors.noncritical e ->
       Tacticals.New.tclZEROMSG (Pp.str "The tactic of Head Simplification cannot be applied here")
   end }
 

@@ -73,7 +73,7 @@ let rec search_head op t1 t2 = function
          let ltac2 = snd(aux op b1 term2 ll2) in
           (ltac1,ltac2))
    with
-         e when Errors.noncritical e -> search_head op t1 t2 r2)
+         e when CErrors.noncritical e -> search_head op t1 t2 r2)
   
        | Leaf(b1) ->
 
@@ -84,7 +84,7 @@ let rec search_head op t1 t2 = function
          let ltac2 = snd(aux op b1 term2 ll2) in
           (ltac1,ltac2))
    with
-         e when Errors.noncritical e -> raise No_common_head)
+         e when CErrors.noncritical e -> raise No_common_head)
 
 
        | _ -> raise Not_normalized

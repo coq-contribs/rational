@@ -1,5 +1,5 @@
 
-open Errors
+open CErrors
 open Names
 open Reductionops
 open Term
