@@ -8,7 +8,7 @@ open Hipattern
 open Sort_tac;;
 open AC;;
 open Proofview.Notations
-open Constrarg
+open Stdarg
 
 DECLARE PLUGIN "aC_tac"
 

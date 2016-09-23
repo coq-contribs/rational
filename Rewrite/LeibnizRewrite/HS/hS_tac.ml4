@@ -15,7 +15,7 @@ open Sort_tac
 open Struct
 open HS
 open Proofview.Notations
-open Constrarg
+open Stdarg
 
 DECLARE PLUGIN "hS_tac"
 
