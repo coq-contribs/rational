@@ -2,6 +2,7 @@
 
 (*i camlp4deps: "parsing/grammar.cma" i*)
 
+open Ltac_plugin
 open CErrors
 open Libnames
 open Globnames

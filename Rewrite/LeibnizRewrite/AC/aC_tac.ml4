@@ -1,4 +1,5 @@
 
+open Ltac_plugin
 open Libnames
 open Globnames
 open Proof_type

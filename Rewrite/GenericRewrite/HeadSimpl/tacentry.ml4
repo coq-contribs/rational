@@ -1,5 +1,6 @@
 (* Contribution to the Coq Library, originally for V6.3 (July 1999) *)
 
+open Ltac_plugin
 open Libnames
 open Globnames
 open Proof_type
