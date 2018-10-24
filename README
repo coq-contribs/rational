@@ -1,3 +1,11 @@
+This archive contains Samual Boutin's decision procedure on ring expressions. This is an ancestor of Patrick Loiseleur's ring tactic, which itself was an ancestor to Bruno Barras, Benjamin Grégoire and Assia Mahboubi's version of the ring tactic.
+
+It was stopped being ported to new version of Coq by its maintainers in 2017. Last compatibility is with Coq version 8.6.0.
+
+The original README follows:
+
+-------------------------------------------------------------------------------
+
 Contribution
 ------------
 This directory contains: A definition of rational numbers
@@ -89,4 +97,3 @@ for integers) are defined on rational numbers.
 
      ./Rewrite is the local library of rewriting tactics
 It is itself devided into two subdirectories commented in a local draft
- 
